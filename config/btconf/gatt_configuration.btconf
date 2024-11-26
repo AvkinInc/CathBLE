@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--Custom BLE GATT-->
+<gatt gatt_caching="true" generic_attribute_service="true" header="gatt_db.h" name="Custom BLE GATT" out="gatt_db.c" prefix="gattdb_">
+  
+  <!--Generic Access-->
+  <service advertise="false" name="Generic Access" requirement="mandatory" sourceId="org.bluetooth.service.generic_access" type="primary" uuid="1800">
+    <informativeText>Abstract: The generic_access service contains generic information about the device. All available Characteristics are readonly. </informativeText>
+    
+    <!--Device Name-->
+    <characteristic const="false" id="device_name" name="Device Name" sourceId="org.bluetooth.characteristic.gap.device_name" uuid="2A00">
+      <informativeText/>
+      <value length="13" type="utf-8" variable_length="false">Avcath</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--Appearance-->
+    <characteristic const="true" name="Appearance" sourceId="org.bluetooth.characteristic.gap.appearance" uuid="2A01">
+      <informativeText>Abstract: The external appearance of this device. The values are composed of a category (10-bits) and sub-categories (6-bits). </informativeText>
+      <value length="2" type="hex" variable_length="false">0000</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Circuit Board Version-->
+  <service advertise="false" name="Circuit Board Version" requirement="mandatory" sourceId="" type="primary" uuid="c5edf176-8bea-4df8-b7d9-edab129d0f43">
+    <informativeText/>
+    
+    <!--Circuit Board Version-->
+    <characteristic const="false" id="cb_version" name="Circuit Board Version" sourceId="" uuid="bdc62253-982a-44c2-b80a-16e6af7ea882">
+      <description>Circuit Board Version</description>
+      <informativeText/>
+      <value length="1" type="hex" variable_length="false">00</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <indicate authenticated="false" bonded="false" encrypted="false"/>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Software Version-->
+  <service advertise="false" name="Software Version" requirement="mandatory" sourceId="" type="primary" uuid="0e5ea19d-be58-4818-ae72-d0828ff1c6f1">
+    <informativeText/>
+    
+    <!--Software Version-->
+    <characteristic const="false" id="sw_version" name="Software Version" sourceId="" uuid="0241d99f-f05e-4548-a214-7aceca9ab1fe">
+      <description>Software Version</description>
+      <informativeText/>
+      <value length="1" type="hex" variable_length="false">00</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <indicate authenticated="false" bonded="false" encrypted="false"/>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Device Information-->
+  <service advertise="false" id="device_information" name="Device Information" requirement="mandatory" sourceId="org.bluetooth.service.device_information" type="primary" uuid="180A">
+    <informativeText>Abstract:  The Device Information Service exposes manufacturer and/or vendor information about a device.  Summary:  This service exposes manufacturer information about a device. The Device Information Service is instantiated as a Primary Service. Only one instance of the Device Information Service is exposed on a device.  </informativeText>
+    
+    <!--Manufacturer Name String-->
+    <characteristic const="true" id="manufacturer_name_string" name="Manufacturer Name String" sourceId="org.bluetooth.characteristic.manufacturer_name_string" uuid="2A29">
+      <informativeText>Abstract:  The value of this characteristic is a UTF-8 string representing the name of the manufacturer of the device.  </informativeText>
+      <value length="12" type="utf-8" variable_length="false">Silicon Labs</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+    
+    <!--System ID-->
+    <characteristic const="false" id="system_id" name="System ID" sourceId="org.bluetooth.characteristic.system_id" uuid="2A23">
+      <informativeText>Abstract:  The SYSTEM ID characteristic consists of a structure with two fields. The first field are the LSOs and the second field contains the MSOs.       This is a 64-bit structure which consists of a 40-bit manufacturer-defined identifier concatenated with a 24 bit unique Organizationally Unique Identifier (OUI). The OUI is issued by the IEEE Registration Authority (http://standards.ieee.org/regauth/index.html) and is required to be used in accordance with IEEE Standard 802-2001.6 while the least significant 40 bits are manufacturer defined.       If System ID generated based on a Bluetooth Device Address, it is required to be done as follows. System ID and the Bluetooth Device Address have a very similar structure: a Bluetooth Device Address is 48 bits in length and consists of a 24 bit Company Assigned Identifier (manufacturer defined identifier) concatenated with a 24 bit Company Identifier (OUI). In order to encapsulate a Bluetooth Device Address as System ID, the Company Identifier is concatenated with 0xFFFE followed by the Company Assigned Identifier of the Bluetooth Address. For more guidelines related to EUI-64, refer to http://standards.ieee.org/develop/regauth/tut/eui64.pdf.  Examples:  If the system ID is based of a Bluetooth Device Address with a Company Identifier (OUI) is 0x123456 and the Company Assigned Identifier is 0x9ABCDE, then the System Identifier is required to be 0x123456FFFE9ABCDE.  </informativeText>
+      <value length="8" type="hex" variable_length="false"/>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Priming Switch-->
+  <service advertise="false" name="Priming Switch" requirement="mandatory" sourceId="" type="primary" uuid="5bdaec43-38b8-40f9-8bb0-6581dfed969f">
+    <informativeText/>
+    
+    <!--Priming Switch-->
+    <characteristic const="false" id="primingSwitch" name="Priming Switch" sourceId="" uuid="f195f361-5c06-4dd7-b815-7a79cfd2769a">
+      <description>primingSwitch_char</description>
+      <informativeText/>
+      <value length="1" type="hex" variable_length="false">00</value>
+      <properties>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+        <write_no_response authenticated="false" bonded="false" encrypted="false"/>
+        <reliable_write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Set Device Name-->
+  <service advertise="false" name="Set Device Name" requirement="mandatory" sourceId="" type="primary" uuid="7f83bd79-3db5-4330-8112-c8a0f86284a0">
+    <informativeText/>
+    
+    <!--Name Suffix - up to 10 characters-->
+    <characteristic const="false" id="renaming_char" name="Name Suffix - up to 10 characters" sourceId="" uuid="f3336990-3f84-4c7f-85a6-4b2ca7266119">
+      <description>Name Suffix</description>
+      <informativeText/>
+      <value length="10" type="hex" variable_length="true">00</value>
+      <properties>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+        <write_no_response authenticated="false" bonded="false" encrypted="false"/>
+        <reliable_write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--Battery Monitor-->
+  <service advertise="false" name="Battery Monitor" requirement="mandatory" sourceId="" type="primary" uuid="910053fc-9aaa-416c-ace1-f6a8676a9a6a">
+    <informativeText/>
+    
+    <!--Battery Reading-->
+    <characteristic const="false" id="battery_Reading" name="Battery Reading" sourceId="" uuid="56767992-6726-4bd3-97aa-8403c0e08a0e">
+      <description>Battery Reading</description>
+      <informativeText/>
+      <value length="4" type="hex" variable_length="true">00</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <indicate authenticated="false" bonded="false" encrypted="false"/>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--AnalogReading-->
+  <service advertise="false" name="AnalogReading" requirement="mandatory" sourceId="" type="primary" uuid="8e49e4ad-d715-4dd9-b08f-a658517d7964">
+    <informativeText/>
+    
+    <!--analog_Reading-->
+    <characteristic const="false" id="analog_Reading" name="analog_Reading" sourceId="" uuid="67111fc0-4df0-4bbd-b1e9-e7d0cecc6699">
+      <description>analog Reading</description>
+      <informativeText/>
+      <value length="4" type="hex" variable_length="true">00</value>
+      <properties>
+        <read authenticated="false" bonded="false" encrypted="false"/>
+        <indicate authenticated="false" bonded="false" encrypted="false"/>
+        <notify authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+  
+  <!--TX_char-->
+  <service advertise="false" name="TX_char" requirement="mandatory" sourceId="" type="primary" uuid="cf6517cd-e1c6-40e0-98c1-b186e11a8d97">
+    <informativeText/>
+    
+    <!--TX_char-->
+    <characteristic const="false" id="TX_char" name="TX_char" sourceId="" uuid="cd6ba5f3-7dc5-4476-95a4-c24316ac6911">
+      <description>TX_char</description>
+      <informativeText/>
+      <value length="1" type="hex" variable_length="false">00</value>
+      <properties>
+        <write authenticated="false" bonded="false" encrypted="false"/>
+        <write_no_response authenticated="false" bonded="false" encrypted="false"/>
+        <reliable_write authenticated="false" bonded="false" encrypted="false"/>
+      </properties>
+    </characteristic>
+  </service>
+</gatt>
